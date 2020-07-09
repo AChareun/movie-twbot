@@ -3,10 +3,25 @@ const config = require('./config.js');
 
 const TWITTER = new Twit(config);
 
-TWITTER.post('statuses/update', { status: 'Hello, world!' }, (err, data, response) => {
-  if (err) {
-    console.error(err);
-  }
+const mentionStream = TWITTER.stream('statuses/filter', { track: ['@MovieDispenser'] });
+mentionStream.on('tweet', receiveMentionEvent);
 
-  console.log(data);
-})
+function receiveMentionEvent(tweet) {
+   const userToReply = tweet.user.screen_name;
+   const tweetText = tweet.text.replace(/@MovieDispenser/g, "");
+   const idToReply  = tweet.id_str;
+
+   const reply = 'Hi! :)';
+   const params = {
+     status: reply,
+     in_reply_to_status_id: idToReply
+    };
+
+   TWITTER.post('statuses/update', params, function(err, data, response) {
+     if (err) {
+       console.log(err);
+     } else {
+       console.log('Tweeted: ' + params.status);
+     }
+   })
+}
