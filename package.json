@@ -1,0 +1,28 @@
+{
+  "name": "movie-twbot",
+  "version": "1.0.0",
+  "description": "Twitter bot to give random movie recommendations with data supplied by an API",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AChareun/movie-twbot.git"
+  },
+  "keywords": [],
+  "author": "Alonso Chareun",
+  "license": "MIT License",
+  "bugs": {
+    "url": "https://github.com/AChareun/movie-twbot/issues"
+  },
+  "homepage": "https://github.com/AChareun/movie-twbot#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "twit": "^2.2.11"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
