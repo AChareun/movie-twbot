@@ -1,7 +1,7 @@
-const Twit = require('twit');
-const config = require('./config.js');
+import Twit from 'twit';
+import { TWKEYS } from './config';
 
-const TWITTER = new Twit(config);
+const TWITTER = new Twit(TWKEYS);
 
 const mentionStream = TWITTER.stream('statuses/filter', { track: ['@MovieDispenser'] });
 mentionStream.on('tweet', receiveMentionEvent);
