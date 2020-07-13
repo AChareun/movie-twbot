@@ -1,5 +1,6 @@
 import Twit from "twit";
 import { TWKEYS } from "./config";
+import getParams from './utils/get-params';
 import requestMovie from "./api/get-data";
 
 const TWITTER = new Twit(TWKEYS);
@@ -11,10 +12,11 @@ mentionStream.on("tweet", receiveMentionEvent);
 
 async function receiveMentionEvent(tweet) {
   const userToReply = tweet.user.screen_name;
-  const tweetText = tweet.text.replace(/@MovieDispenser/g, "");
+  const tweetText = tweet.text.replace(/@MovieDispenser/g, "").trim();
   const idToReply = tweet.id_str;
 
-  const randomMovie = await requestMovie();
+  const searchParams = getParams(tweetText);
+  const randomMovie = await requestMovie(searchParams);
 
   const reply = `Hi, here's a random movie for you :)
 ${randomMovie.original_title}, ${randomMovie.release_date}.
