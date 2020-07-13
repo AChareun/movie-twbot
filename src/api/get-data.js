@@ -27,4 +27,4 @@ const requestARandomMovie = async () => {
   return movieData;
 }
 
-requestARandomMovie();
+export default requestARandomMovie;
