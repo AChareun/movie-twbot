@@ -16,7 +16,7 @@ const formatParams = (param) => {
       newParam[0] = "with_genres=";
       newParam[1] = getGenreId(newParam[1]);
       break;
-    case "año":
+    case "estreno":
       newParam[0] = "year=";
       break;
     case "idioma":
