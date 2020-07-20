@@ -3,10 +3,12 @@ import genres from "./genres";
 const getParams = (tweetText) => {
   const tweetParams = tweetText.split("/").map((param) => param.split(":"));
 
-  const FORMATED_PARAMS = tweetParams.map((param) => formatParams(param));
-
-  console.log(FORMATED_PARAMS.join("&"));
-  return FORMATED_PARAMS.join("&");
+  try {
+    const FORMATED_PARAMS = tweetParams.map((param) => formatParams(param));
+    return FORMATED_PARAMS.join("&");
+  } catch (error) {
+    throw error
+  }
 };
 
 const formatParams = (param) => {
@@ -23,7 +25,7 @@ const formatParams = (param) => {
       newParam[0] = "with_original_language=";
       break;
     default:
-      break;
+      throw new Error('invalid parameter');
   }
 
   return newParam.join("");
