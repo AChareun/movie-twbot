@@ -1,16 +1,19 @@
 import requestAMovie from '../api/get-data';
 import getStoredMovie from '../fallback/get-movie';
+import mapMovie from "../mapper/movie";
 
 const getMovieData = async (searchParams) => {
   try {
     const movieData = await requestAMovie(searchParams);
+    const newMovie = mapMovie(movieData)
     const isAPISource = true;
-    return [movieData, isAPISource];
+    return [newMovie, isAPISource];
     
   } catch (error) {
-    const fallBackMovie = getStoredMovie();
+    const movieData = getStoredMovie();
+    const fallbackMovie = mapMovie(movieData);
     const isAPISource = false;
-    return [fallBackMovie, isAPISource]
+    return [fallbackMovie, isAPISource]
   }
 }
 

@@ -15,7 +15,7 @@ const requestMovieList = async (params = '', page = 1) => {
 
 const requestARandomMovie = async (params) => {
   const TOTAL_PAGES = await requestMovieList(params).then(res => res.total_pages);
-  if (TOTAL_PAGES === undefined) {
+  if (TOTAL_PAGES === undefined || 0) {
     throw new Error('Something bad happened when requesting to the API')
   }
 
