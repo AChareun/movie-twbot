@@ -5,7 +5,8 @@
   "main": "bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon lib/bot.js",
+    "start": "node lib/bot.js",
+    "dev": "nodemon lib/bot.js",
     "build": "babel src -d lib"
   },
   "repository": {
