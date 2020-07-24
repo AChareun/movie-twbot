@@ -31,7 +31,8 @@ const formatParams = (param) => {
   return newParam.join("");
 };
 
-const getGenreId = (genre) => {
+const getGenreId = (param) => {
+  const genre = param.toLowerCase();
   const genreIndex = genres.findIndex((gen) => gen.name === genre);
   const genreID = genres[genreIndex].id;
 

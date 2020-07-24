@@ -6,7 +6,7 @@ const BASE_URL = "https://api.themoviedb.org/3/discover/movie?";
 
 const requestMovieList = async (params = '', page = 1) => {
   const MOVIE_LIST = await fetch(
-    `${BASE_URL}${API_KEY}&${params}&language=en-US&include_adult=false&include_video=false&page=${page}`
+    `${BASE_URL}${API_KEY}&${params}&language=es&include_adult=false&include_video=false&page=${page}`
   )
   .then(res => res.json());
 
