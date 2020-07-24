@@ -1,5 +1,8 @@
 import dotenv from 'dotenv';
+
 dotenv.config()
+
+export const TWHANDLE = process.env.TWHANDLE;
 
 export const TWKEYS = {
   consumer_key: process.env.API_CONSUMER_KEY,  

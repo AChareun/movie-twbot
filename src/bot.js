@@ -1,17 +1,17 @@
 import Twit from "twit";
-import { TWKEYS } from "./config";
+import { TWKEYS, TWHANDLE } from "./config";
 import buildAnswer from './answer';
+
 
 const TWITTER = new Twit(TWKEYS);
 
 const mentionStream = TWITTER.stream("statuses/filter", {
-  track: ["@MovieDispenser"],
+  track: [TWHANDLE],
 });
 mentionStream.on("tweet", receiveMentionEvent);
 
 async function receiveMentionEvent(tweet) {
-  const userToReply = tweet.user.screen_name;
-  const tweetText = tweet.text.replace(/@MovieDispenser/g, "").trim();
+  const tweetText = tweet.text.replace(TWHANDLE, "").trim();
   const idToReply = tweet.id_str;
 
   const reply = await buildAnswer(tweetText);
@@ -21,7 +21,7 @@ async function receiveMentionEvent(tweet) {
     in_reply_to_status_id: idToReply,
   };
 
-  TWITTER.post("statuses/update", params, function (err, data, response) {
+  TWITTER.post("statuses/update", params, (err, data, response) => {
     if (err) {
       console.log(err);
     } else {
