@@ -1,4 +1,34 @@
 import genres from "./genres";
+import paramList from './params';
+
+const getGenreId = (param) => {
+  const genre = param.toLowerCase();
+
+  const genreIndex = genres.findIndex((gen) => gen.name === genre);
+  if (genreIndex === -1) throw new Error('invalid genre');
+
+  const genreID = genres[genreIndex].id;
+
+  return genreID;
+};
+
+const formatParams = (param) => {
+  const newParam = param;
+  const paramIndex = paramList.findIndex((item) => item.param === newParam[0]);
+
+  if (paramIndex === -1) throw new Error('invalid parameter');
+
+  if (newParam[0] === 'gen') {
+    try {
+      newParam[1] = getGenreId(newParam[1]);
+    } catch (error) {
+      throw error;
+    }
+  }
+  newParam[0] = paramList[paramIndex].format;
+
+  return newParam.join("");
+};
 
 const getParams = (tweetText) => {
   const tweetParams = tweetText.split("/").map((param) => param.split(":"));
@@ -9,34 +39,6 @@ const getParams = (tweetText) => {
   } catch (error) {
     throw error
   }
-};
-
-const formatParams = (param) => {
-  const newParam = param;
-  switch (newParam[0]) {
-    case "gen":
-      newParam[0] = "with_genres=";
-      newParam[1] = getGenreId(newParam[1]);
-      break;
-    case "estreno":
-      newParam[0] = "year=";
-      break;
-    case "idioma":
-      newParam[0] = "with_original_language=";
-      break;
-    default:
-      throw new Error('invalid parameter');
-  }
-
-  return newParam.join("");
-};
-
-const getGenreId = (param) => {
-  const genre = param.toLowerCase();
-  const genreIndex = genres.findIndex((gen) => gen.name === genre);
-  const genreID = genres[genreIndex].id;
-
-  return genreID;
 };
 
 export default getParams;
