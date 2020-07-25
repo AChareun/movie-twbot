@@ -1,7 +1,7 @@
 const genres = [
   {
     id: 28,
-    name: "acción",
+    name: "accion",
   },
   {
     id: 12,
@@ -9,7 +9,7 @@ const genres = [
   },
   {
     id: 16,
-    name: "animación",
+    name: "animacion",
   },
   {
     id: 35,
@@ -33,7 +33,7 @@ const genres = [
   },
   {
     id: 14,
-    name: "fantasía",
+    name: "fantasia",
   },
   {
     id: 36,
@@ -57,7 +57,7 @@ const genres = [
   },
   {
     id: 878,
-    name: "ciencia ficción",
+    name: "ciencia ficcion",
   },
   {
     id: 10770,
@@ -69,7 +69,7 @@ const genres = [
   },
   {
     id: 10752,
-    name: "bélico",
+    name: "belico",
   },
   {
     id: 37,
