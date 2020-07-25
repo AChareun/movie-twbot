@@ -2,7 +2,7 @@ import requestAMovie from '../api/get-data';
 import getStoredMovie from '../fallback/get-movie';
 import mapMovie from "../mapper/movie";
 
-const getMovieData = async (searchParams) => {
+const getMovieData = async (searchParams = '') => {
   try {
     const movieData = await requestAMovie(searchParams);
     const newMovie = mapMovie(movieData)
