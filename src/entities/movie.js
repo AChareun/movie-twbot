@@ -1,5 +1,16 @@
+/* eslint-disable camelcase */
 class Movie {
-  constructor(id, imdb_id, title, original_title, overview, original_language, genres, runtime, release_date) {
+  constructor(
+    id,
+    imdb_id,
+    title,
+    original_title,
+    overview,
+    original_language,
+    genres,
+    runtime,
+    release_date,
+  ) {
     this.id = id;
     this.imdb_id = imdb_id;
     this.title = title;

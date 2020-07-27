@@ -8,7 +8,7 @@ const fallbackMovies = [
     original_language: 'en',
     genres: ['Comedia', 'Drama', 'Romance'],
     runtime: 97,
-    release_date: '2010'
+    release_date: '2010',
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const fallbackMovies = [
     original_language: 'en',
     genres: ['Comedia', 'Drama', 'Romance'],
     runtime: 95,
-    release_date: '2009'
+    release_date: '2009',
   },
   {
     id: 3,
@@ -30,8 +30,8 @@ const fallbackMovies = [
     original_language: 'en',
     genres: ['Drama', 'Musica'],
     runtime: 106,
-    release_date: '2014'
-  }
+    release_date: '2014',
+  },
 ];
 
 export default fallbackMovies;

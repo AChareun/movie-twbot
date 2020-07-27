@@ -1,4 +1,5 @@
-import Movie from "../entities/movie";
+/* eslint-disable camelcase */
+import Movie from '../entities/movie';
 
 const mapMovie = (movieData) => {
   const {
@@ -10,7 +11,7 @@ const mapMovie = (movieData) => {
     original_language,
     genres,
     runtime,
-    release_date
+    release_date,
   } = movieData;
 
   return new Movie(
@@ -20,10 +21,10 @@ const mapMovie = (movieData) => {
     original_title,
     overview,
     original_language,
-    genres.map(genre => genre.name),
+    genres.map((genre) => genre.name),
     runtime,
-    release_date
-  )
-}
+    release_date,
+  );
+};
 
 export default mapMovie;

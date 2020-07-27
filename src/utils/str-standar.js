@@ -8,7 +8,7 @@ const removeAccents = (string) => {
     while (resultString.includes(accVowel)) {
       resultString = resultString.replace(accVowel, vowels[index]);
     }
-  })
+  });
 
   return resultString;
 };
