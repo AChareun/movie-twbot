@@ -1,14 +1,19 @@
-import Twit from 'twit';
-import { TWKEYS, TWHANDLE } from './config';
-import buildAnswer from './answer';
+const Twit = require('twit');
+const { TWKEYS, TWHANDLE } = require('./config');
+const configureDependencyInjection = require('./config/di');
+const standarizeText = require('./utils/string-manipulation');
 
 const TWITTER = new Twit(TWKEYS);
 
 async function receiveMentionEvent(tweet) {
   const tweetText = tweet.text.replace(TWHANDLE, '').trim();
+  const container = configureDependencyInjection(standarizeText(tweetText));
+
+  const answerService = container.get('AnswerService');
+
   const idToReply = tweet.id_str;
 
-  const reply = await buildAnswer(tweetText);
+  const reply = await answerService.getAnswer();
 
   const params = {
     status: reply,

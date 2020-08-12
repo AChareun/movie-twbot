@@ -21,4 +21,4 @@ const standarizeString = (string) => {
   return standarizedString;
 };
 
-export default standarizeString;
+module.exports = standarizeString;

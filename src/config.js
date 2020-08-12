@@ -1,17 +1,19 @@
-import dotenv from 'dotenv';
+const dotenv = require('dotenv');
 
 dotenv.config();
 
-export const { TWHANDLE } = process.env;
+const { TWHANDLE } = process.env;
 
-export const TWKEYS = {
+const TWKEYS = {
   consumer_key: process.env.API_CONSUMER_KEY,
   consumer_secret: process.env.API_CONSUMER_SECRET,
   access_token: process.env.ACCESS_TOKEN,
   access_token_secret: process.env.ACCESS_SECRET,
 };
 
-export const TMDBKEYS = {
+const TMDBKEYS = {
   API_KEY: process.env.API_KEY,
   READ_TOKEN: process.env.READ_TOKEN,
 };
+
+module.exports = { TWHANDLE, TWKEYS, TMDBKEYS };
