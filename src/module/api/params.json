@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "param": "genero",
+    "format": "with_genres="
+  },
+  {
+    "id": 2,
+    "param": "estreno",
+    "format": "year="
+  },
+  {
+    "id": 3,
+    "param": "idioma",
+    "format": "with_original_language="
+  }
+]
