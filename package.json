@@ -5,9 +5,8 @@
   "main": "bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node lib/bot.js",
-    "dev": "nodemon lib/bot.js",
-    "build": "babel src -d lib"
+    "start": "node src/bot.js",
+    "dev": "nodemon src/bot.js"
   },
   "repository": {
     "type": "git",
@@ -23,15 +22,14 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "node-fetch": "^2.6.0",
+    "rsdi": "^1.0.5",
     "twit": "^2.2.11"
   },
   "devDependencies": {
-    "@babel/cli": "^7.10.4",
-    "@babel/core": "^7.10.4",
-    "@babel/preset-env": "^7.10.4",
     "eslint": "^7.4.0",
-    "eslint-plugin-import": "^2.22.0",
     "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "jsdoc": "^3.6.5",
     "nodemon": "^2.0.4"
   }
 }
