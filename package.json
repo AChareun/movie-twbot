@@ -4,9 +4,10 @@
   "description": "Twitter bot to give random movie recommendations with data supplied by an API",
   "main": "bot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/bot.js",
-    "dev": "nodemon src/bot.js"
+    "dev": "nodemon src/bot.js",
+    "test": "jest --collect-coverage",
+    "test:dev": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -26,9 +27,12 @@
     "twit": "^2.2.11"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.10",
     "eslint": "^7.4.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^23.20.0",
+    "jest": "^26.4.2",
     "jsdoc": "^3.6.5",
     "nodemon": "^2.0.4"
   }
