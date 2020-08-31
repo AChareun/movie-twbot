@@ -1,26 +1,27 @@
+require('dotenv').config();
 const Twit = require('twit');
 const { TWKEYS, TWHANDLE } = require('./config');
 const configureDependencyInjection = require('./config/di');
-const standarizeText = require('./utils/string-manipulation');
+const mapRequest = require('./requestMapper');
 
-const TWITTER = new Twit(TWKEYS);
+const TWBOT = new Twit(TWKEYS);
 
 async function receiveMentionEvent(tweet) {
   const tweetText = tweet.text.replace(TWHANDLE, '').trim();
-  const container = configureDependencyInjection(standarizeText(tweetText));
+  const container = configureDependencyInjection();
 
   const answerService = container.get('AnswerService');
 
   const idToReply = tweet.id_str;
 
-  const reply = await answerService.getAnswer();
+  const reply = await answerService.getAnswer(mapRequest(tweetText));
 
   const params = {
     status: reply,
     in_reply_to_status_id: idToReply,
   };
 
-  TWITTER.post('statuses/update', params, (err) => {
+  TWBOT.post('statuses/update', params, (err) => {
     if (err) {
       console.log(err);
     } else {
@@ -29,7 +30,7 @@ async function receiveMentionEvent(tweet) {
   });
 }
 
-const mentionStream = TWITTER.stream('statuses/filter', {
+const mentionStream = TWBOT.stream('statuses/filter', {
   track: [TWHANDLE],
 });
 mentionStream.on('tweet', receiveMentionEvent);

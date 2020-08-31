@@ -1,7 +1,3 @@
-const dotenv = require('dotenv');
-
-dotenv.config();
-
 const { TWHANDLE } = process.env;
 
 const TWKEYS = {
