@@ -1,65 +1,44 @@
-/**
- * @typedef {import('../../param/service/paramService')} ParamService
- * @typedef {import('../../api/movieApi')} MovieApi
- * @typedef {import('../entity/movie)} Movie
- */
+/* eslint-disable class-methods-use-this */
 
 const fetch = require('node-fetch');
 const mapMovie = require('../mapper/movieMapper');
 
 /**
- * @param {MovieApi} param0 Destructured props of the object passed
- * @param {string} params
- * @param {number} page
- * @returns {JSON} Page of movie results for params passed
+ * @typedef {import('../../param/service/paramService')} ParamService
+ * @typedef {import('../api/abstractMovieApi')} AbstractMovieApi
+ * @typedef {import('../entity/movie)} Movie
  */
-async function fetchMovieList({ BASE_URL, API_KEY, BASE_PARAMS }, params = '', page = 1) {
-  const movieList = await fetch(
-    `${BASE_URL}/discover/movie?api_key=${API_KEY}&${params}${BASE_PARAMS}&page=${page}`,
-  )
-    .then((res) => res.json());
-
-  return movieList;
-}
-
-/**
- * @param {MovieApi} param0 Destructured props of the object passed
- * @param {number} movieId
- * @returns {JSON} Data of the movie fetched
- */
-async function fetchMovieData({ BASE_URL, API_KEY }, movieId) {
-  const movieData = await fetch(`${BASE_URL}/movie/${movieId}?api_key=${API_KEY}&language=es-ES`)
-    .then((res) => res.json());
-
-  return movieData;
-}
 
 module.exports = class MovieService {
   /**
-   * @param {ParamService} paramService
-   * @param {MovieApi} movieApi
+   * @param {AbstractMovieApi} movieApi
    */
-  constructor(paramService, movieApi) {
-    this.paramService = paramService;
+  constructor(movieApi) {
     this.movieApi = movieApi;
   }
 
   /**
+   * @param {string} url
+   * @returns {JSON}
+   */
+  async fetchData(url) {
+    const data = await fetch(url)
+      .then((res) => res.json());
+    return data;
+  }
+
+  /**
+   * @param {string} request
    * @returns {JSON} Data of a random movie with the params passed
    */
-  async getMovieData() {
-    const params = this.paramService.getParams();
+  async getRandomMovieData(request) {
+    const { total_pages: totalPages } = await this.fetchData(this.movieApi.getUrl(request, 1));
 
-    const totalPages = await fetchMovieList(
-      this.movieApi, params,
-    ).then((res) => res.total_pages);
+    const randomPage = Math.floor(Math.random() * totalPages + 1);
+    const movieList = await this.fetchData(this.movieApi.getUrl(request, randomPage));
 
-    const movieList = await fetchMovieList(
-      this.movieApi, params, Math.floor(Math.random() * totalPages),
-    );
-
-    const randomMovie = movieList.results[Math.floor(Math.random() * movieList.results.length)];
-    const movieData = await fetchMovieData(this.movieApi, randomMovie.id);
+    const randomMovie = movieList.results[Math.floor(Math.random() * movieList.results.length + 1)];
+    const movieData = await this.fetchData(this.movieApi.getUrl(request, null, randomMovie.id));
 
     return movieData;
   }
@@ -67,8 +46,8 @@ module.exports = class MovieService {
   /**
    * @returns {Movie} Mapped Movie Object with fetched/fallback data
    */
-  async getMovie() {
-    const newMovie = await this.getMovieData();
+  async getMovie(request) {
+    const newMovie = await this.getRandomMovieData(request);
     return mapMovie(newMovie);
   }
 };
