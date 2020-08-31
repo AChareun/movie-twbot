@@ -7,9 +7,9 @@ module.exports = class TMDBMovieApi extends AbstractMovieApi {
    * @param {string} baseParams
    * @param {Object} apiInfo Contains the params supported by the concrete API
    */
-  constructor({
+  constructor(
     apiKey, baseUrl, baseParams, apiParams,
-  }) {
+  ) {
     super();
     this.API_KEY = apiKey;
     this.BASE_URL = baseUrl;
@@ -60,12 +60,12 @@ module.exports = class TMDBMovieApi extends AbstractMovieApi {
     this.params = this.params ? this.params : this.keyValueToQuery(request);
 
     if (id) {
-      const URL = `${this.BASE_URL}/movie/${id}?api_key${this.API_KEY}&language=en-US`;
+      const URL = `${this.BASE_URL}/movie/${id}?api_key=${this.API_KEY}&language=en-US`;
       return URL;
     }
 
     const PAGE = `&page=${page}`;
-    const URL = `${this.BASE_URL}/discover/movie?api_key${this.API_KEY}&${this.params + PAGE + this.BASE_PARAMS}`;
+    const URL = `${this.BASE_URL}/discover/movie?api_key=${this.API_KEY}&${this.params + PAGE + this.BASE_PARAMS}`;
 
     return URL;
   }
