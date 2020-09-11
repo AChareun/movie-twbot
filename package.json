@@ -22,7 +22,7 @@
   "homepage": "https://github.com/AChareun/movie-twbot#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "rsdi": "^1.0.5",
     "twit": "^2.2.11"
   },
