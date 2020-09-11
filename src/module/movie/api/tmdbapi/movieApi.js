@@ -1,6 +1,10 @@
+/* eslint-disable class-methods-use-this */
+
+const fetch = require('node-fetch');
+
 const AbstractMovieApi = require('../abstractMovieApi');
 
-module.exports = class TMDBMovieApi extends AbstractMovieApi {
+module.exports = class MovieApi extends AbstractMovieApi {
   /**
    * @param {string} apiKey
    * @param {string} baseUrl
@@ -15,6 +19,16 @@ module.exports = class TMDBMovieApi extends AbstractMovieApi {
     this.BASE_URL = baseUrl;
     this.BASE_PARAMS = baseParams;
     this.API_PARAMS = apiParams;
+  }
+
+  /**
+   * @param {string} url
+   * @returns {JSON}
+   */
+  async fetchData(url) {
+    const data = await fetch(url)
+      .then((res) => res.json());
+    return data;
   }
 
   /**
@@ -56,9 +70,7 @@ module.exports = class TMDBMovieApi extends AbstractMovieApi {
    * @param {number} id
    * @returns {string} api endpoint to fetch data
    */
-  getUrl(request, page, id) {
-    this.params = this.params ? this.params : this.keyValueToQuery(request);
-
+  constructUrl(page, id) {
     if (id) {
       const URL = `${this.BASE_URL}/movie/${id}?api_key=${this.API_KEY}&language=en-US`;
       return URL;
@@ -68,5 +80,15 @@ module.exports = class TMDBMovieApi extends AbstractMovieApi {
     const URL = `${this.BASE_URL}/discover/movie?api_key=${this.API_KEY}&${this.params + PAGE + this.BASE_PARAMS}`;
 
     return URL;
+  }
+
+  /**
+   * @param {string} request
+   * @returns {JSON} data retrieved from the api endpoint
+   */
+  async getMovieData(request, page, id) {
+    this.params = this.params ? this.params : this.keyValueToQuery(request);
+
+    return this.fetchData(this.constructUrl(page, id));
   }
 };

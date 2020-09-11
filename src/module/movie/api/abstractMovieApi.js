@@ -12,28 +12,10 @@ module.exports = class AbstractMovieApi {
   }
 
   /**
-   * @param {Array} request
-   * @param {number} page
-   * @param {number} id
-   * @returns {string} api endpoint to fetch data
+   * @param {string} request
+   * @returns {Movie} Mapped Movie Object with fetched/fallback data
    */
-  getUrl(request, page, id) {
-    throw new MethodNotImplementedError();
-  }
-
-  /**
-   * @param {Array} param
-   * @returns {Array} Array with concrete-api-valid parameter
-   */
-  validateParams(param) {
-    throw new MethodNotImplementedError();
-  }
-
-  /**
-   * @param {Array} params Array of arrays with key-value mapped params
-   * @returns {string} string with params ready to be appended to url
-   */
-  keyValueToQuery(params) {
+  async getMovie(request) {
     throw new MethodNotImplementedError();
   }
 };
