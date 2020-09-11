@@ -1,20 +1,20 @@
 require('dotenv').config();
 const Twit = require('twit');
+
 const { TWKEYS, TWHANDLE } = require('./config');
 const configureDependencyInjection = require('./config/di');
-const mapRequest = require('./requestMapper');
+const cleanString = require('./utils/string-manipulation');
 
 const TWBOT = new Twit(TWKEYS);
 
+const container = configureDependencyInjection();
+const answerService = container.get('AnswerService');
+
 async function receiveMentionEvent(tweet) {
-  const tweetText = tweet.text.replace(TWHANDLE, '').trim();
-  const container = configureDependencyInjection();
-
-  const answerService = container.get('AnswerService');
-
+  const tweetText = cleanString(tweet.text, TWHANDLE);
   const idToReply = tweet.id_str;
 
-  const reply = await answerService.getAnswer(mapRequest(tweetText));
+  const reply = await answerService.getAnswer(tweetText);
 
   const params = {
     status: reply,
