@@ -1,7 +1,11 @@
-const vowels = ['a', 'e', 'i', 'o', 'u'];
-const accentVowel = ['á', 'é', 'í', 'ó', 'ú'];
-
+/**
+ * @param {string} string
+ * @returns {string}
+ */
 const removeAccents = (string) => {
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
+  const accentVowel = ['á', 'é', 'í', 'ó', 'ú'];
+
   let resultString = string;
 
   accentVowel.forEach((accVowel, index) => {
@@ -13,12 +17,16 @@ const removeAccents = (string) => {
   return resultString;
 };
 
-const standarizeString = (string) => {
-  const lowerCaseStr = string.toLowerCase();
-  const trimedStr = lowerCaseStr.trim();
-  const standarizedString = removeAccents(trimedStr);
+/**
+ * @param {string} string
+ * @param {string} toRemove
+ * @returns {string}
+ */
+const cleanString = (string, toRemove) => {
+  const almostCleanString = string.replace(toRemove, '').toLowerCase().trim();
+  const cleanedString = removeAccents(almostCleanString);
 
-  return standarizedString;
+  return cleanedString;
 };
 
-module.exports = standarizeString;
+module.exports = cleanString;
