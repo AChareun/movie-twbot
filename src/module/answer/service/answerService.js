@@ -35,8 +35,8 @@ Duración: ${movieData.runtime}.`;
   }
 
   /**
-   * @param {Array} request
-   * @returns {string} Message with movie information
+   * @param {string} request from the Twitter Bot
+   * @returns {string} text with movie information
    */
   async getAnswer(request) {
     const movie = await this.movieService.getMovie(request);
