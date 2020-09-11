@@ -84,6 +84,8 @@ module.exports = class MovieApi extends AbstractMovieApi {
 
   /**
    * @param {string} request
+   * @param {number} page
+   * @param {number} id
    * @returns {JSON} data retrieved from the api endpoint
    */
   async getMovieData(request, page, id) {

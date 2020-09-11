@@ -26,5 +26,5 @@ test('Abstract methods can\'t be called without concrete implementation', () => 
   const ConcreteMovieApi = class extends AbstractMovieApi {};
   const movieApiInstance = new ConcreteMovieApi();
 
-  expect(() => movieApiInstance.getMovie()).rejects.toThrowError(MethodNotImplementedError);
+  expect(() => movieApiInstance.getMovieData()).rejects.toThrowError(MethodNotImplementedError);
 });
