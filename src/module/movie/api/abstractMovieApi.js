@@ -12,8 +12,8 @@ module.exports = class AbstractMovieApi {
   }
 
   /**
-   * @param {string} request
-   * @returns {Movie} Mapped Movie Object with fetched/fallback data
+   * @param {Array} request
+   * @returns {JSON} fetched data from the api
    */
   async getMovieData(request) {
     throw new MethodNotImplementedError();
