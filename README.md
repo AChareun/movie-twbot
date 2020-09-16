@@ -10,7 +10,7 @@ Este producto utiliza la API de [TMDb](https://www.themoviedb.org/) pero no es a
 
 Gracias al método `.stream` de [Twit](https://www.npmjs.com/package/twit), la aplicación filtra aquellos tweets en los que el handle del bot es incluido y responde exclusivamente a ellos luego de realizar las operaciones necesarias para construir la respuesta.
 
-- En el caso feliz, el bot es mencionado en un tweet que incluya sólo la mención o parámetros utilizados correctamente (siguiendo la estructura **param:value/param:value**). Luego de realizar las peticiones a la API de TMDb, responde con la información de una película.
+- En el caso feliz, el bot es mencionado en un tweet que incluya sólo la mención o parámetros utilizados correctamente sumados a la misma (siguiendo la estructura **param=value param:value**). Luego de realizar las peticiones a la API de TMDb, responde con la información de una película.
 
 - Frente a una mención con una estructura incorrecta, el bot responde haciéndolo saber e incluye una cita a un tweet con instrucciones.
 
@@ -47,11 +47,10 @@ READ_TOKEN=''
 El repositorio incluye algunos scripts para desarrollo y producción:
 
 ```
-- npm start: corre la aplicación transpilada en modo producción
+- npm start: corre la aplicación en modo producción
 
-- npm run dev: corre la aplicación transpilada en modo desarrollo
+- npm run dev: corre la aplicación en modo desarrollo
 
-- npm run build: corre babel para transpilar de ESM a CJS tomando como origen '/src' y como destino '/lib'
 ```
 
 ### Parámetros soportados 
