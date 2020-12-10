@@ -3,18 +3,18 @@
  * @returns {string}
  */
 const removeAccents = (string) => {
-  const vowels = ['a', 'e', 'i', 'o', 'u'];
-  const accentVowel = ['á', 'é', 'í', 'ó', 'ú'];
+    const vowels = ['a', 'e', 'i', 'o', 'u'];
+    const accentVowel = ['á', 'é', 'í', 'ó', 'ú'];
 
-  let resultString = string;
+    let resultString = string;
 
-  accentVowel.forEach((accVowel, index) => {
-    while (resultString.includes(accVowel)) {
-      resultString = resultString.replace(accVowel, vowels[index]);
-    }
-  });
+    accentVowel.forEach((accVowel, index) => {
+        while (resultString.includes(accVowel)) {
+            resultString = resultString.replace(accVowel, vowels[index]);
+        }
+    });
 
-  return resultString;
+    return resultString;
 };
 
 /**
@@ -23,10 +23,10 @@ const removeAccents = (string) => {
  * @returns {string}
  */
 const cleanString = (string, toRemove) => {
-  const almostCleanString = string.replace(toRemove, '').toLowerCase().trim();
-  const cleanedString = removeAccents(almostCleanString);
+    const almostCleanString = string.replace(toRemove, '').toLowerCase().trim();
+    const cleanedString = removeAccents(almostCleanString);
 
-  return cleanedString;
+    return cleanedString;
 };
 
 module.exports = cleanString;
