@@ -1,7 +1,7 @@
 require('dotenv').config();
 const Twit = require('twit');
 
-const { TWKEYS, TWHANDLE } = require('./config');
+const { TWKEYS, TWHANDLE } = require('./config/config');
 const configureDependencyInjection = require('./config/di');
 const cleanString = require('./utils/string-manipulation');
 
