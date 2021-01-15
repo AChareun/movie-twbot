@@ -1,10 +1,10 @@
 /* eslint-disable class-methods-use-this */
 
 const mapMovie = require('../mapper/movieMapper');
-const mapRequest = require('../mapper/requestMapper');
+const { mapRequest } = require('../mapper/requestMapper');
 
 /**
- * @typedef {import('../../param/service/paramService')} ParamService
+ * @typedef {import('../../parameter/service/paramService')} ParamService
  * @typedef {import('../api/abstractMovieApi')} AbstractMovieApi
  * @typedef {import('../entity/movie)} Movie
  */
@@ -12,9 +12,11 @@ const mapRequest = require('../mapper/requestMapper');
 module.exports = class MovieService {
     /**
      * @param {AbstractMovieApi} movieApi
+     * @param {Array<Object>} fallbackMovies
      */
-    constructor(movieApi) {
+    constructor(movieApi, fallbackMovies) {
         this.movieApi = movieApi;
+        this.fallbackMovies = fallbackMovies;
     }
 
     /**
@@ -33,5 +35,12 @@ module.exports = class MovieService {
 
         const movie = mapMovie(movieData);
         return movie;
+    }
+
+    getFallbackMovie() {
+        const movies = this.fallbackMovies;
+        const movieData = movies[Math.floor(Math.random() * movies.length - 1)];
+
+        return movieData;
     }
 };
