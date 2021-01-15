@@ -15,4 +15,12 @@ function mapRequest(text) {
     return requestToKeyValuePair(text);
 }
 
-module.exports = mapRequest;
+/**
+ * @param {Array} params Array of arrays with key-value
+ * @returns {string} string with params ready to be appended to url
+ */
+function keyValueToQuery(keyValueArray) {
+    return keyValueArray.join('').join('&');
+}
+
+module.exports = { requestToKeyValuePair, keyValueToQuery, mapRequest };
