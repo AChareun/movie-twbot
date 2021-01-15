@@ -1,8 +1,8 @@
 const { default: DIContainer, object, get } = require('rsdi');
 const MovieService = require('../module/movie/service/movieService');
 const AnswerService = require('../module/answer/service/answerService');
-const MovieApi = require('../module/movie/api/tmdbapi/movieApi');
-const apiParams = require('../module/movie/api/tmdbapi/params.json');
+const MovieApi = require('../module/movieApi/tmdbapi/movieApi');
+const apiParams = require('../module/movieApi/tmdbapi/params.json');
 
 module.exports = function configureDI() {
     const container = new DIContainer();
