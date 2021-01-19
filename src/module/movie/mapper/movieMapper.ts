@@ -1,6 +1,6 @@
-const Movie = require('../entity/movie');
+import { Movie } from '../entity/movie';
 
-module.exports = function mapMovie(movieData) {
+export function mapMovie(movieData: any): Movie {
     const {
         id,
         imdb_id: imdbId,
@@ -20,7 +20,7 @@ module.exports = function mapMovie(movieData) {
         originalTitle,
         overview,
         originalLanguage,
-        genres.map((genre) => genre.name),
+        genres.map((genre: any) => genre.name),
         runtime,
         new Date(releaseDate).getFullYear()
     );

@@ -1,17 +1,13 @@
-module.exports = class ParameterService {
-    /**
-     * @param {Array<Array>} params
-     * @returns {Array} Array with valid params
-     */
-    validateParams(params, validParams) {
+export class ParameterService {
+
+    validParams: Array<any>;
+
+    validateParams(params: Array<Array<string>>, validParams: Array<any>): Array<any> {
         this.validParams = validParams;
         return params.map((param) => this.checkParam(param));
     }
 
-    /**
-     * @param {Array} param key-value pair
-     */
-    checkParam(param) {
+    private checkParam(param: Array<string>): Array<string> {
         const { validParams } = this;
         const paramToValidate = param;
 
@@ -24,7 +20,7 @@ module.exports = class ParameterService {
 
         if (validParams[paramIndex].apiData) {
             const { apiData } = validParams[paramIndex];
-            const valueIndex = apiData.findIndex((item) => item.name === paramToValidate[1]);
+            const valueIndex = apiData.findIndex((item: { name: any; }) => item.name === paramToValidate[1]);
 
             if (valueIndex === -1) {
                 throw new Error('invalid value');
