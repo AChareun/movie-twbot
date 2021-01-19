@@ -1,16 +1,10 @@
 module.exports = class ParameterService {
     /**
-     * @param {JSON} validParams
-     */
-    constructor(validParams) {
-        this.validParams = validParams;
-    }
-
-    /**
      * @param {Array<Array>} params
      * @returns {Array} Array with valid params
      */
-    validateParams(params) {
+    validateParams(params, validParams) {
+        this.validParams = validParams;
         return params.map((param) => this.checkParam(param));
     }
 
