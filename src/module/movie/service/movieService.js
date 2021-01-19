@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 
 const mapMovie = require('../mapper/movieMapper');
-const { mapRequest } = require('../mapper/requestMapper');
+const { requestToKeyValuePair } = require('../../../utils/keyValueMapper');
 
 /**
  * @typedef {import('../../parameter/service/paramService')} ParamService
@@ -24,8 +24,8 @@ module.exports = class MovieService {
      * @returns {Movie} Mapped Movie Object with fetched/fallback data
      */
     async getMovie(request) {
-        const mappedRequest = mapRequest(request);
-        const { total_pages: totalPages } = await this.movieApi.getMovieData(mappedRequest, 1);
+        const mappedRequest = requestToKeyValuePair(request);
+        const { totalPages } = await this.movieApi.getMovieData(mappedRequest, 1);
 
         const randomPage = Math.floor(Math.random() * totalPages + 1);
         const movieList = await this.movieApi.getMovieData(mappedRequest, randomPage);
