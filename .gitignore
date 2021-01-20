@@ -103,5 +103,8 @@ dist
 # TernJS port file
 .tern-port
 
-# Twitter API Keys
+# Env variables
 .env
+
+# Build
+built/

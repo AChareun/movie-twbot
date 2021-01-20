@@ -1,23 +1,14 @@
-/* eslint-disable class-methods-use-this */
-/**
- * @typedef {import('../../movie/service/movieService')} MovieService
- * @typedef {import('../../movie/entity/movie')} Movie
- */
+import { MovieService } from '../../movie/service/movieService';
+import { Movie } from '../../movie/entity/movie';
 
-module.exports = class AnswerService {
-    /**
-     * @param {MovieService} movieService
-     */
-    constructor(movieService) {
+export class AnswerService {
+    movieService: MovieService;
+
+    constructor(movieService: MovieService) {
         this.movieService = movieService;
     }
 
-    /**
-     * @param {Movie} movieData
-     * @param {boolean} isAPISource specifies if data comes from an api or the fallback
-     * @returns {string}
-     */
-    writeAnswer(movieData, isAPISource = true) {
+    writeAnswer(movieData: Movie, isAPISource: boolean = true): string {
         if (!isAPISource) {
             const answerText = `Hubo un problema con la API, pero igual te dejo una recomendación 😊
 '${movieData.title}'.
@@ -34,14 +25,10 @@ Duración: ${movieData.runtime}.`;
         return answerText;
     }
 
-    /**
-     * @param {string} request from the Twitter Bot
-     * @returns {string} text with movie information
-     */
-    async getAnswer(request) {
+    async getAnswer(request: string): Promise<string> {
         const movie = await this.movieService.getMovie(request);
         const answer = this.writeAnswer(movie);
 
         return answer;
     }
-};
+}
