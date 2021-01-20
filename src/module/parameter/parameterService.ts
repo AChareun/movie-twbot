@@ -1,6 +1,5 @@
 export class ParameterService {
-
-    validParams: Array<any>;
+    validParams: Array<IApiParameter>;
 
     validateParams(params: Array<Array<string>>, validParams: Array<any>): Array<any> {
         this.validParams = validParams;
@@ -11,16 +10,18 @@ export class ParameterService {
         const { validParams } = this;
         const paramToValidate = param;
 
-        const paramIndex = validParams.findIndex((item) => item.param === paramToValidate[0]);
+        const paramIndex = validParams.findIndex((item) => item.name === paramToValidate[0]);
         if (paramIndex === -1) {
             throw new Error('invalid parameter');
         }
 
-        paramToValidate[0] = validParams[paramIndex].apiFormat;
+        paramToValidate[0] = validParams[paramIndex].queryFormat;
 
         if (validParams[paramIndex].apiData) {
             const { apiData } = validParams[paramIndex];
-            const valueIndex = apiData.findIndex((item: { name: any; }) => item.name === paramToValidate[1]);
+            const valueIndex = apiData.findIndex(
+                (item: { name: any }) => item.name === paramToValidate[1]
+            );
 
             if (valueIndex === -1) {
                 throw new Error('invalid value');
@@ -30,4 +31,4 @@ export class ParameterService {
 
         return [...paramToValidate];
     }
-};
+}
