@@ -1,23 +1,22 @@
 import { AbstractMovieApi } from '../abstractMovieApi';
 import { ParameterService } from '../../parameter/parameterService';
 import { keyValueToQuery } from '../../../utils/keyValueMapper';
-import { apiParams } from './params';
 
 export class MovieApi extends AbstractMovieApi {
 
-    API_KEY: string;
+    API_KEY: string | null;
     BASE_URL: string;
-    BASE_PARAMS: string;
-    API_PARAMS: Array<Object>;
+    BASE_PARAMS: string | null;
+    API_PARAMS: Array<IApiParameter>;
     parameterService: ParameterService;
     params: string;
 
-    constructor(apiKey: string, parameterService: ParameterService) {
+    constructor(apiConfig: IMovieApiConfig, parameterService: ParameterService) {
         super();
-        this.API_KEY = apiKey;
-        this.BASE_URL = 'https://api.themoviedb.org/3';
-        this.BASE_PARAMS = '&language=es-ES&include_adult=false&include_video=false';
-        this.API_PARAMS = apiParams;
+        this.API_KEY = apiConfig.apiKey;
+        this.BASE_URL = apiConfig.baseUrl;
+        this.BASE_PARAMS = apiConfig.baseParams;
+        this.API_PARAMS = apiConfig.apiParams;
         this.parameterService = parameterService;
     }
 

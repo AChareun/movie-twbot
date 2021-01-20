@@ -6,8 +6,3 @@ export const TWKEYS = {
     access_token: process.env.ACCESS_TOKEN || '',
     access_token_secret: process.env.ACCESS_SECRET || '',
 };
-
-export const TMDBKEYS = {
-    API_KEY: process.env.API_KEY,
-    READ_TOKEN: process.env.READ_TOKEN,
-};
