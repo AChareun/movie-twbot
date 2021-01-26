@@ -1,44 +1,49 @@
 {
-  "name": "movie-twbot",
-  "version": "1.0.0",
-  "description": "Twitter bot to give random movie recommendations with data supplied by an API",
-  "main": "bot.js",
-  "scripts": {
-    "start": "node src/bot.js",
-    "dev": "nodemon src/bot.js",
-    "test": "jest --collect-coverage",
-    "test:dev": "jest --watch"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AChareun/movie-twbot.git"
-  },
-  "keywords": [],
-  "author": "Alonso Chareun",
-  "license": "MIT License",
-  "bugs": {
-    "url": "https://github.com/AChareun/movie-twbot/issues"
-  },
-  "homepage": "https://github.com/AChareun/movie-twbot#readme",
-  "dependencies": {
-    "dotenv": "^8.2.0",
-    "node-fetch": "^2.6.1",
-    "rsdi": "^1.0.5",
-    "twit": "^2.2.11"
-  },
-  "devDependencies": {
-    "@types/jest": "^26.0.10",
-    "@types/twit": "^2.2.28",
-    "eslint": "^7.4.0",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-config-prettier": "^7.0.0",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-jest": "^23.20.0",
-    "eslint-plugin-prettier": "^3.2.0",
-    "jest": "^26.4.2",
-    "jsdoc": "^3.6.5",
-    "nodemon": "^2.0.4",
-    "prettier": "2.2.1",
-    "typescript": "^4.1.3"
-  }
+    "name": "movie-twbot",
+    "version": "1.0.0",
+    "description": "Twitter bot to give random movie recommendations with data supplied by an API",
+    "engines": {
+        "node": "v14.15.0"
+    },
+    "main": "bot.js",
+    "scripts": {
+        "start": "node dist/src/bot.js",
+        "dev": "nodemon dist/src/bot.js",
+        "test": "jest --collect-coverage",
+        "test:dev": "jest --watch"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AChareun/movie-twbot.git"
+    },
+    "keywords": [],
+    "author": "Alonso Chareun",
+    "license": "MIT License",
+    "bugs": {
+        "url": "https://github.com/AChareun/movie-twbot/issues"
+    },
+    "homepage": "https://github.com/AChareun/movie-twbot#readme",
+    "dependencies": {
+        "@types/twit": "^2.2.28",
+        "@types/node": "^14.14.22",
+        "dotenv": "^8.2.0",
+        "node-fetch": "^2.6.1",
+        "rsdi": "^1.0.5",
+        "twit": "^2.2.11"
+    },
+    "devDependencies": {
+        "@types/jest": "^26.0.10",
+        "eslint": "^7.4.0",
+        "eslint-config-airbnb-base": "^14.2.0",
+        "eslint-config-prettier": "^7.0.0",
+        "eslint-plugin-import": "^2.22.0",
+        "eslint-plugin-jest": "^23.20.0",
+        "eslint-plugin-prettier": "^3.2.0",
+        "jest": "^26.4.2",
+        "jsdoc": "^3.6.5",
+        "nodemon": "^2.0.4",
+        "prettier": "2.2.1",
+        "ts-jest": "^26.4.4",
+        "typescript": "^4.1.3"
+    }
 }
