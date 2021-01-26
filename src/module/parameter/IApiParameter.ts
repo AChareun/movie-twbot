@@ -1,4 +1,4 @@
-interface IApiParameter {
+export interface IApiParameter {
     id: number;
     name: string;
     queryFormat: string;
