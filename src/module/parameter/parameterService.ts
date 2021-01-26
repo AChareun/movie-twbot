@@ -40,14 +40,13 @@ export class ParameterService {
 
         formattedParam[0] = validParams[paramIndex].queryFormat;
 
-        if (valueIndex) {
+        if (valueIndex === null) {
+            formattedParam[1] = param[1];
+        } else {
             const { apiData } = validParams[paramIndex];
             formattedParam[1] = apiData[valueIndex].value;
-        } else {
-            formattedParam[1] = param[1];
         }
 
         return formattedParam;
     }
-
 }

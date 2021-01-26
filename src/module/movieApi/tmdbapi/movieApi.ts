@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 import { AbstractMovieApi } from '../abstractMovieApi';
 import { ParameterService } from '../../parameter/parameterService';
 import { keyValueToQuery } from '../../../utils/keyValueMapper';
@@ -45,8 +47,9 @@ export class MovieApi extends AbstractMovieApi {
         const fetchedData = await fetch(urlToFetch).then((res: any) => res.json());
 
         if (fetchedData.total_pages) {
-            const response = { totalPages: fetchedData.totalPages, ...fetchedData };
-            delete response.data.total_pages;
+            const { total_pages: totalPages } = fetchedData;
+            const response = { ...fetchedData, totalPages };
+            delete response.total_pages;
 
             return response;
         }

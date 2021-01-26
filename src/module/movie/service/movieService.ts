@@ -4,13 +4,8 @@ import {mapMovie} from '../mapper/movieMapper';
 import { requestToKeyValuePair } from '../../../utils/keyValueMapper';
 
 export class MovieService {
-    /**
-     * @param {AbstractMovieApi} movieApi
-     * @param {Array<Object>} fallbackMovies
-     */
-
     movieApi: AbstractMovieApi;
-    fallbackMovies: Array<Object>;
+    fallbackMovies: Object[];
 
     constructor(movieApi: AbstractMovieApi, fallbackMovies: Array<Object>) {
         this.movieApi = movieApi;
