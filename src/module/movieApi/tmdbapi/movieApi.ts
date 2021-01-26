@@ -1,6 +1,8 @@
 import { AbstractMovieApi } from '../abstractMovieApi';
 import { ParameterService } from '../../parameter/parameterService';
 import { keyValueToQuery } from '../../../utils/keyValueMapper';
+import { IApiParameter } from '../../parameter/IApiParameter';
+import { IMovieApiConfig } from '../IMovieApiConfig';
 
 export class MovieApi extends AbstractMovieApi {
 

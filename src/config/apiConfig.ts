@@ -1,4 +1,5 @@
 import apiParams from '../../data/tmdbApiParams';
+import { IMovieApiConfig } from '../module/movieApi/IMovieApiConfig';
 
 export const TMDBKEYS = {
     API_KEY: process.env.API_KEY,
