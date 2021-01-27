@@ -16,6 +16,10 @@ export class MovieService {
         const mappedRequest = requestToKeyValuePair(request);
         const { totalPages }: any = await this.movieApi.getMovieData(mappedRequest, 1);
 
+        if (!totalPages) {
+            throw new Error('No results found');
+        }
+
         const randomPage = Math.floor(Math.random() * totalPages + 1);
         const movieList: any = await this.movieApi.getMovieData(mappedRequest, randomPage);
 
